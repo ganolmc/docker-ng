@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker-compose up tests
+
+deploy:
+  # edge: true
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-ng"
+  env: "DockerNg-env"
+  bucket_name: "elasticbeanstalk-us-east-2-978828767084"
+  bucket_path: "docker-ng"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
